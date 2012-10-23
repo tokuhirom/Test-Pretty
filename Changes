@@ -1,5 +1,10 @@
 Revision history for Perl extension Test::Pretty
 
+0.03
+
+    - docs
+    - do not prettify under the win32
+
 0.02
 
     - fixed deps
