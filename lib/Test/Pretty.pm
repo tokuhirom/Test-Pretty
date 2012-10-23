@@ -76,7 +76,13 @@ sub _ok {
     my( $self, $test, $name ) = @_;
 
     my ($pkg, $filename, $line) = caller($Test::Builder::Level);
-    my $src_line = $get_src_line->($filename, $line);
+    my $src_line;
+    if (defined($line)) {
+        $src_line = $get_src_line->($filename, $line);
+    } else {
+        $self->diag(Carp::longmess("\$Test::Builder::Level is invalid. Testing library you are using is broken. : $Test::Builder::Level"));
+        $src_line = '';
+    }
 
     if ( $self->{Child_Name} and not $self->{In_Destroy} ) {
         $name = 'unnamed test' unless defined $name;
