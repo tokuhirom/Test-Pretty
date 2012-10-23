@@ -10,22 +10,6 @@ use File::Spec ();
 use Term::ANSIColor qw/colored/;
 use Scope::Guard;
 
-if (!$ENV{HARNESS_ACTIVE} && $^O ne 'MSWin32') {
-    no warnings 'redefine';
-    *Test::Builder::subtest = \&_subtest;
-    *Test::Builder::ok = \&_ok;
-    *Test::Builder::done_testing = sub {
-        # do nothing
-    };
-    my $builder = Test::Builder->new;
-    $builder->no_ending(1);
-
-    my $encoding = Term::Encoding::term_encoding();
-    binmode $builder->output(), "encoding($encoding)";
-    binmode $builder->failure_output(), "encoding($encoding)";
-    binmode $builder->todo_output(), "encoding($encoding)";
-}
-
 use Cwd ();
 our $BASE_DIR = Cwd::getcwd();
 my %filecache;
@@ -40,6 +24,44 @@ my $get_src_line = sub {
     $line =~ s/^\s+|\s+$//g;
     return $line;
 };
+
+if (!$ENV{HARNESS_ACTIVE} && $^O ne 'MSWin32') {
+    no warnings 'redefine';
+    *Test::Builder::subtest = \&_subtest;
+    *Test::Builder::ok = \&_ok;
+    *Test::Builder::done_testing = sub {
+        # do nothing
+    };
+    my $builder = Test::Builder->new;
+    $builder->no_ending(1);
+
+    my $encoding = Term::Encoding::term_encoding();
+    binmode $builder->output(), "encoding($encoding)";
+    binmode $builder->failure_output(), "encoding($encoding)";
+    binmode $builder->todo_output(), "encoding($encoding)";
+} else {
+    no warnings 'redefine';
+    my $ORIGINAL_ok = \&Test::Builder::ok;
+    my @NAMES;
+    *Test::Builder::subtest = sub {
+        push @NAMES, $_[1];
+        my $guard = Scope::Guard->new(sub {
+            pop @NAMES;
+        });
+        $_[2]->();
+    };
+    *Test::Builder::ok = sub {
+        if ( !$_[1] ) {
+            $_[0]->diag("\nin test (" . join( ' -> ', @NAMES ) . ')');
+        }
+        $_[2] ||= do {
+            my ( $package, $filename, $line ) = caller($Test::Builder::Level);
+            "line $line: " . $get_src_line->($filename, $line);
+        };
+        goto &$ORIGINAL_ok;
+    };
+}
+
 sub _ok {
     my( $self, $test, $name ) = @_;
 
