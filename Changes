@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Pretty
 
+0.05
+
+    - prettify the TAP for prove users.
+
 0.04
 
     - doc fix
