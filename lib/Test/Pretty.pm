@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.010001;
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 use Test::Builder;
 use Term::Encoding ();
@@ -159,7 +159,7 @@ __END__
 
 =head1 NAME
 
-Test::Pretty - Yes! PrettyCure 5!
+Test::Pretty - Smile Precure!
 
 =head1 SYNOPSIS
 
