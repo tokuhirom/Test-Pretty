@@ -9,6 +9,7 @@ use Term::Encoding ();
 use File::Spec ();
 use Term::ANSIColor qw/colored/;
 use Scope::Guard;
+use Carp ();
 
 use Cwd ();
 our $BASE_DIR = Cwd::getcwd();

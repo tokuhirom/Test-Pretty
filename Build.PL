@@ -17,6 +17,7 @@ my $build = Module::Build->new(
         'Term::Encoding' => 0,
         'Term::ANSIColor' => 0,
         'Scope::Guard' => 0,
+        'Carp' => 0,
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
