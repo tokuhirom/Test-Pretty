@@ -197,7 +197,7 @@ This code outputs following result:
 
 =end html
 
-Yes, it's not readable. Test::Pretty makes this result to pretty.
+No, it's not readable. Test::Pretty makes this result to pretty.
 
 You can enable Test::Pretty by
 
