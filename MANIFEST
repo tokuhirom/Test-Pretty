@@ -1,8 +1,15 @@
 .travis.yml
 Build.PL
 Changes
+eg/test.pl
+img/more.png
+img/pretty.png
 lib/Test/Pretty.pm
+LICENSE
 MANIFEST			This list of files
+META.json
+META.yml
+README
 t/00_compile.t
 xt/01_podspell.t
 xt/02_perlcritic.t
