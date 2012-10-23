@@ -219,7 +219,13 @@ After this, you can get a following prerty output.
 
 Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF@ GMAIL COME<gt>
 
+=head1 THANKS TO
+
+Some code was taken from L<Test::Name::FromLine>, thanks cho45++
+
 =head1 SEE ALSO
+
+L<Acme::PrettyCure>
 
 =head1 LICENSE
 
