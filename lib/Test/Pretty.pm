@@ -51,13 +51,13 @@ if (!$ENV{HARNESS_ACTIVE} && $^O ne 'MSWin32') {
         $_[2]->();
     };
     *Test::Builder::ok = sub {
-        if ( !$_[1] ) {
-            $_[0]->diag("\nin test (" . join( ' -> ', @NAMES ) . ')');
-        }
         $_[2] ||= do {
             my ( $package, $filename, $line ) = caller($Test::Builder::Level);
-            "line $line: " . $get_src_line->($filename, $line);
+            "L $line: " . $get_src_line->($filename, $line);
         };
+        if (@NAMES) {
+            $_[2] = "(" . join( '/', @NAMES)  . ") " . $_[2];
+        }
         goto &$ORIGINAL_ok;
     };
 }
