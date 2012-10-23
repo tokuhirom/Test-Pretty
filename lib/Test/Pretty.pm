@@ -8,6 +8,7 @@ use Test::Builder;
 use Term::Encoding ();
 use File::Spec ();
 use Term::ANSIColor qw/colored/;
+use Scope::Guard;
 
 if (!$ENV{HARNESS_ACTIVE}) {
     no warnings 'redefine';
@@ -167,6 +168,52 @@ Test::Pretty - Yes! PrettyCure 5!
 =head1 DESCRIPTION
 
 Test::Pretty is a prettifier for Test::More.
+
+When you are writing a test case such as following:
+
+    use strict;
+    use warnings;
+    use utf8;
+    use Test::More;
+
+    subtest 'MessageFilter' => sub {
+        my $filter = MessageFilter->new('foo');
+
+        subtest 'should detect message with NG word' => sub {
+            ok($filter->detect('hello from foo'));
+        };
+        subtest 'should not detect message without NG word' => sub {
+            ok(!$filter->detect('hello world!'));
+        };
+    };
+
+    done_testing;
+
+This code outputs following result:
+
+=begin html
+
+<div><img src="https://raw.github.com/tokuhirom/Test-Pretty/master/img/more.png"></div>
+
+=end html
+
+Yes, it's not readable. Test::Pretty makes this result to pretty.
+
+You can enable Test::Pretty by
+
+    use Test::Pretty;
+
+Or just add following option to perl interpreter.
+    
+    -MTest::Pretty
+
+After this, you can get a following prerty output.
+
+=begin html
+
+<div><img src="https://raw.github.com/tokuhirom/Test-Pretty/master/img/pretty.png"></div>
+
+=end html
 
 =head1 AUTHOR
 
