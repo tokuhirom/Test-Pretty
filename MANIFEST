@@ -1,6 +1,7 @@
 .travis.yml
 Build.PL
 Changes
+eg/messagefilter.t
 eg/test.pl
 img/more.png
 img/pretty.png

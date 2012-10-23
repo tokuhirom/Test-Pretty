@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Pretty
 
+0.06
+
+    - Display better diag for bad $Test::Builder::Level
+
 0.05
 
     - prettify the TAP for prove users.
