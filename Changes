@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Pretty
 
+0.07
+
+    - fixed deps. latest Term::ANSIColor is required.
+
 0.06
 
     - Display better diag for bad $Test::Builder::Level
