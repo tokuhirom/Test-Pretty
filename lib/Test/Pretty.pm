@@ -186,9 +186,7 @@ sub _subtest {
         $builder->_indent() . "  $name\n";
     };
     $builder->_indent($orig_indent . '    ');
-    eval {
-        $code->();
-    };
+    $code->();
 }
 
 1;

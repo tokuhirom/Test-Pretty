@@ -15,7 +15,7 @@ my $build = Module::Build->new(
         perl => '5.010001',
         'parent'                        => '0',
         'Term::Encoding' => 0,
-        'Term::ANSIColor' => 0,
+        'Term::ANSIColor' => '3.02',
         'Scope::Guard' => 0,
         'Carp' => 0,
     },
