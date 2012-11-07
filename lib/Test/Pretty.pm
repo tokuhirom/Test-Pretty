@@ -27,6 +27,8 @@ my $get_src_line = sub {
 };
 
 my $SHOW_DUMMY_TAP;
+my $TERM_ENCODING = Term::Encoding::term_encoding();
+my $ENCODING_IS_UTF8 = $TERM_ENCODING =~ /^utf-?8$/i;
 
 if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32') {
     # make pretty
@@ -67,7 +69,7 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32
     $builder->no_ending(1);
     $builder->no_header(1); # plan
 
-    my $encoding = Term::Encoding::term_encoding();
+    my $encoding = $TERM_ENCODING;
     binmode $builder->output(), "encoding($encoding)";
     binmode $builder->failure_output(), "encoding($encoding)";
     binmode $builder->todo_output(), "encoding($encoding)";
@@ -82,18 +84,27 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32
 
     $|++;
 
-    my $encoding = Term::Encoding::term_encoding();
+    my $encoding = $TERM_ENCODING;
     my $builder = Test::Builder->new;
     binmode $builder->output(), "encoding($encoding)";
     binmode $builder->failure_output(), "encoding($encoding)";
     binmode $builder->todo_output(), "encoding($encoding)";
+
+    my ($arrow_mark, $failed_mark);
+    if ($ENCODING_IS_UTF8) {
+        $arrow_mark = "\x{bb}";
+        $failed_mark = " \x{2192} ";
+    } else {
+        $arrow_mark = ">>";
+        $failed_mark = " x ";
+    }
 
     *Test::Builder::subtest = sub {
         push @NAMES, $_[1];
         my $guard = Scope::Guard->new(sub {
             pop @NAMES;
         });
-        $_[0]->note(colored(['cyan'], "\x{bb}" x (@NAMES*2)) . " " . join(colored(['yellow'], " \x{2192} "), $NAMES[-1]));
+        $_[0]->note(colored(['cyan'], $arrow_mark x (@NAMES*2)) . " " . join(colored(['yellow'], $failed_mark), $NAMES[-1]));
         $_[2]->();
     };
     *Test::Builder::ok = sub {
@@ -173,12 +184,15 @@ ERR
     my $out;
     my $result = &Test::Builder::share( {} );
 
+
     unless($test) {
-        $out .= colored(['red'], "\x{2716}");
+        my $fail_char = $ENCODING_IS_UTF8 ? "\x{2716}" : "x";
+        $out .= colored(['red'], $fail_char);
         @$result{ 'ok', 'actual_ok' } = ( ( $self->in_todo ? 1 : 0 ), 0 );
     }
     else {
-        $out .= colored(['green'], "\x{2713}");
+        my $success_char = $ENCODING_IS_UTF8 ? "\x{2713}" : "o";
+        $out .= colored(['green'], $success_char);
         @$result{ 'ok', 'actual_ok' } = ( 1, $test );
     }
 
