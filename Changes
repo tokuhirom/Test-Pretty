@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Pretty
 
+0.08
+
+    - prove support
+
 0.07
 
     - fixed deps. latest Term::ANSIColor is required.

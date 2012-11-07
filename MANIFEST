@@ -5,7 +5,13 @@ eg/messagefilter.t
 eg/test.pl
 img/more.png
 img/pretty.png
+lib/App/Prove/Plugin/Pretty.pm
+lib/TAP/Formatter/Pretty/Multi.pm
+lib/TAP/Formatter/Pretty/Multi/Session.pm
+lib/TAP/Formatter/Pretty/Single.pm
+lib/TAP/Formatter/Pretty/Single/Session.pm
 lib/Test/Pretty.pm
+lib/Test/Pretty/Harness.pm
 LICENSE
 MANIFEST			This list of files
 META.json
