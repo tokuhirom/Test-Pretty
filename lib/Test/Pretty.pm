@@ -26,7 +26,10 @@ my $get_src_line = sub {
     return $line;
 };
 
-if (!$ENV{HARNESS_ACTIVE} && $^O ne 'MSWin32') {
+my $SHOW_DUMMY_TAP;
+
+if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32') {
+    # make pretty
     no warnings 'redefine';
     *Test::Builder::subtest = \&_subtest;
     *Test::Builder::ok = \&_ok;
@@ -40,6 +43,10 @@ if (!$ENV{HARNESS_ACTIVE} && $^O ne 'MSWin32') {
     binmode $builder->output(), "encoding($encoding)";
     binmode $builder->failure_output(), "encoding($encoding)";
     binmode $builder->todo_output(), "encoding($encoding)";
+
+    if ($ENV{HARNESS_ACTIVE}) {
+        $SHOW_DUMMY_TAP++;
+    }
 } else {
     no warnings 'redefine';
     my $ORIGINAL_ok = \&Test::Builder::ok;
@@ -71,6 +78,12 @@ if (!$ENV{HARNESS_ACTIVE} && $^O ne 'MSWin32') {
         }
         goto &$ORIGINAL_ok;
     };
+}
+
+END {
+    if ($SHOW_DUMMY_TAP) {
+        printf("\n1..1\n%s\n", Test::Builder->new->is_passing ? 'ok' : 'not ok');
+    }
 }
 
 sub _ok {
