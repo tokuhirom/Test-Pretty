@@ -83,7 +83,7 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32
 
 END {
     if ($SHOW_DUMMY_TAP) {
-        my $builder = Test::More->builder;
+        my $builder = Test::Builder->new;
         printf("\n%s\n", $builder->is_passing ? 'ok' : 'not ok');
         if ($builder->is_passing) {
             ## no critic (Variables::RequireLocalizedPunctuationVars)
