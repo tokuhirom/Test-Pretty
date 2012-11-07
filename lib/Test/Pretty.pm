@@ -38,6 +38,7 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32
     };
     my $builder = Test::Builder->new;
     $builder->no_ending(1);
+    $builder->no_header(1); # plan
 
     my $encoding = Term::Encoding::term_encoding();
     binmode $builder->output(), "encoding($encoding)";
@@ -82,7 +83,16 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32
 
 END {
     if ($SHOW_DUMMY_TAP) {
-        printf("\n1..1\n%s\n", Test::Builder->new->is_passing ? 'ok' : 'not ok');
+        my $builder = Test::More->builder;
+        printf("\n%s\n", $builder->is_passing ? 'ok' : 'not ok');
+        if ($builder->is_passing) {
+            ## no critic (Variables::RequireLocalizedPunctuationVars)
+            $? = 0;
+        } else {
+            # TODO: exit status may be 'how many failed'
+            ## no critic (Variables::RequireLocalizedPunctuationVars)
+            $? = 1;
+        }
     }
 }
 
