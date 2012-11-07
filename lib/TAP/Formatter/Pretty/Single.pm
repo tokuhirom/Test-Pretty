@@ -1,12 +1,10 @@
-package TAP::Formatter::Pretty;
+package TAP::Formatter::Pretty::Single;
 use strict;
 use warnings;
 use POSIX qw(strftime);
 
 use parent qw(TAP::Formatter::Base);
-use TAP::Formatter::Pretty::Session;
-
-my $MAX_ERRORS = 5;
+use TAP::Formatter::Pretty::Single::Session;
 
 sub open_test {
     my ( $self, $test, $parser ) = @_;
@@ -15,7 +13,7 @@ sub open_test {
         die "This formatter does not support parallel testing";
     }
 
-    my $session = TAP::Formatter::Pretty::Session->new(
+    my $session = TAP::Formatter::Pretty::Single::Session->new(
         {   name       => $test,
             formatter  => $self,
             parser     => $parser,

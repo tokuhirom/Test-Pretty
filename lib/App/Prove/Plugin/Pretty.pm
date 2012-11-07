@@ -10,7 +10,7 @@ sub load {
     # make pretty output for testing only one file.
     if (@{$app->argv} == 1 && -f $app->argv->[0]) {
         $app->verbose(1);
-        $app->formatter('TAP::Formatter::Pretty');
+        $app->formatter('TAP::Formatter::Pretty::Single');
         $ENV{PERL_TEST_PRETTY_ENABLED} = 1;
         $ENV{PERL5OPT} .= ' -MTest::Pretty';
     }

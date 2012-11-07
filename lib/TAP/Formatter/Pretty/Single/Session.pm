@@ -1,4 +1,4 @@
-package TAP::Formatter::Pretty::Session;
+package TAP::Formatter::Pretty::Single::Session;
 
 use strict;
 use TAP::Formatter::Session;
