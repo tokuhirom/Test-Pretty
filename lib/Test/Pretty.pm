@@ -30,7 +30,7 @@ my $SHOW_DUMMY_TAP;
 my $TERM_ENCODING = Term::Encoding::term_encoding();
 my $ENCODING_IS_UTF8 = $TERM_ENCODING =~ /^utf-?8$/i;
 
-if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32') {
+if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
     # make pretty
     no warnings 'redefine';
     *Test::Builder::subtest = \&_subtest;
