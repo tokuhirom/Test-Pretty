@@ -69,10 +69,9 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32
     $builder->no_ending(1);
     $builder->no_header(1); # plan
 
-    my $encoding = $TERM_ENCODING;
-    binmode $builder->output(), "encoding($encoding)";
-    binmode $builder->failure_output(), "encoding($encoding)";
-    binmode $builder->todo_output(), "encoding($encoding)";
+    binmode $builder->output(), "encoding($TERM_ENCODING)";
+    binmode $builder->failure_output(), "encoding($TERM_ENCODING)";
+    binmode $builder->todo_output(), "encoding($TERM_ENCODING)";
 
     if ($ENV{HARNESS_ACTIVE}) {
         $SHOW_DUMMY_TAP++;
@@ -84,11 +83,10 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32
 
     $|++;
 
-    my $encoding = $TERM_ENCODING;
     my $builder = Test::Builder->new;
-    binmode $builder->output(), "encoding($encoding)";
-    binmode $builder->failure_output(), "encoding($encoding)";
-    binmode $builder->todo_output(), "encoding($encoding)";
+    binmode $builder->output(), "encoding($TERM_ENCODING)";
+    binmode $builder->failure_output(), "encoding($TERM_ENCODING)";
+    binmode $builder->todo_output(), "encoding($TERM_ENCODING)";
 
     my ($arrow_mark, $failed_mark);
     if ($ENCODING_IS_UTF8) {
