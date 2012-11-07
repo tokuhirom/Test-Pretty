@@ -7,6 +7,7 @@ eg/test.pl
 img/more.png
 img/pretty.png
 lib/App/Prove/Plugin/Pretty.pm
+lib/App/Prove/Plugin/retty.pm
 lib/TAP/Formatter/Pretty/Multi.pm
 lib/TAP/Formatter/Pretty/Multi/Session.pm
 lib/TAP/Formatter/Pretty/Single.pm

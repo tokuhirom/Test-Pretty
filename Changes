@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Pretty
 
+0.10
+
+    - added -Pretty module
+
 0.09
 
     - removed code using Test::More.
