@@ -61,3 +61,4 @@ mmm
 Precure
 pretty
 prettifier
+proverc

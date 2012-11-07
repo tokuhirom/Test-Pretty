@@ -15,7 +15,7 @@ sub open_test {
       ? 'TAP::Formatter::Console::ParallelSession'
       : 'TAP::Formatter::Pretty::Multi::Session';
 
-    eval "require $class";
+    eval "require $class"; ## no critic.
     $self->_croak($@) if $@;
 
     my $session = $class->new(

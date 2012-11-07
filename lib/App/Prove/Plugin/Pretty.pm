@@ -43,5 +43,5 @@ This plugin only affects if prove running for only one test case.
 
 =head1 HINT
 
-I recommend to add -PPretty to your .proverc. It makes testing life is better.
+I recommend to add C<< -PPretty >> to your .proverc. It makes testing life is better.
 
