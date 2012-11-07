@@ -36,6 +36,33 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32
     *Test::Builder::done_testing = sub {
         # do nothing
     };
+
+    my %plan_cmds = (
+        no_plan     => \&Test::Builder::no_plan,
+        skip_all    => \&_skip_all,
+        tests       => \&Test::Builder::_plan_tests,
+    );
+    *Test::Builder::plan = sub {
+        my( $self, $cmd, $arg ) = @_;
+
+        return unless $cmd;
+
+        local $Test::Builder::Level = $Test::Builder::Level + 1;
+
+        $self->croak("You tried to plan twice") if $self->{Have_Plan};
+
+        if( my $method = $plan_cmds{$cmd} ) {
+            local $Test::Builder::Level = $Test::Builder::Level + 1;
+            $self->$method($arg);
+        }
+        else {
+            my @args = grep { defined } ( $cmd, $arg );
+            $self->croak("plan() doesn't understand @args");
+        }
+
+        return 1;
+    };
+
     my $builder = Test::Builder->new;
     $builder->no_ending(1);
     $builder->no_header(1); # plan
@@ -82,8 +109,8 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED}) && $^O ne 'MSWin32
 }
 
 END {
+    my $builder = Test::Builder->new;
     if ($SHOW_DUMMY_TAP) {
-        my $builder = Test::Builder->new;
         printf("\n%s\n", $builder->is_passing ? 'ok' : 'not ok');
         if ($builder->is_passing) {
             ## no critic (Variables::RequireLocalizedPunctuationVars)
@@ -94,6 +121,13 @@ END {
             $? = 1;
         }
     }
+}
+
+sub _skip_all {
+    my ($self, $reason) = @_;
+    printf("1..0 # SKIP %s\n", $reason);
+    $SHOW_DUMMY_TAP = 0;
+    exit 0;
 }
 
 sub _ok {
