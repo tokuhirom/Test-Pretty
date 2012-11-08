@@ -8,6 +8,7 @@ use Test::Builder;
 use Term::Encoding ();
 use File::Spec ();
 use Term::ANSIColor qw/colored/;
+use Test::More ();
 use Scope::Guard;
 use Carp ();
 
@@ -41,6 +42,7 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
     *Test::Builder::done_testing = sub {
         # do nothing
     };
+    *Test::Builder::skip = \&_skip;
 
     my %plan_cmds = (
         no_plan     => \&Test::Builder::no_plan,
@@ -260,6 +262,27 @@ sub _subtest {
     };
     $builder->_indent($orig_indent . '    ');
     $code->();
+}
+
+sub _skip {
+    my ($self, $why) = @_;
+
+    lock( $self->{Curr_Test} );
+    $self->{Curr_Test}++;
+
+    $self->{Test_Results}[ $self->{Curr_Test} - 1 ] = &Test::Builder::share(
+        {
+            'ok'      => 1,
+            actual_ok => 1,
+            name      => '',
+            type      => 'skip',
+            reason    => $why,
+        }
+    );
+
+    $self->_print(colored(['yellow'], 'skip') . " $why");
+
+    return 1;
 }
 
 1;

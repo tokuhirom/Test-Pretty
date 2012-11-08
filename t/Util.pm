@@ -44,7 +44,7 @@ sub exit_status_is {
     my ($expected) = @_;
 
     ok(POSIX::WIFEXITED($?));
-    isnt(POSIX::WEXITSTATUS($?), $expected);
+    is(POSIX::WEXITSTATUS($?), $expected);
 }
 
 sub exit_status_isnt {
