@@ -44,11 +44,12 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
     };
     *Test::Builder::skip = \&_skip;
     *Test::Builder::skip_all = \&_skip_all;
+    *Test::Builder::expected_tests = \&_expected_tests;
 
     my %plan_cmds = (
         no_plan     => \&Test::Builder::no_plan,
         skip_all    => \&_skip_all,
-        tests       => \&Test::Builder::_plan_tests,
+        tests       => \&__plan_tests,
     );
     *Test::Builder::plan = sub {
         my( $self, $cmd, $arg ) = @_;
@@ -263,6 +264,39 @@ sub _subtest {
     };
     $builder->_indent($orig_indent . '    ');
     $code->();
+}
+
+sub __plan_tests {
+    my ( $self, $arg ) = @_;
+
+    if ($arg) {
+        local $Test::Builder::Level = $Test::Builder::Level + 1;
+        return $self->expected_tests($arg);
+    }
+    elsif ( !defined $arg ) {
+        $self->croak("Got an undefined number of tests");
+    }
+    else {
+        $self->croak("You said to run 0 tests");
+    }
+
+    return;
+}
+
+sub _expected_tests {
+    my $self = shift;
+    my($max) = @_;
+
+    if(@_) {
+        $self->croak("Number of tests must be a positive integer.  You gave it '$max'")
+          unless $max =~ /^\+?\d+$/;
+
+        $self->{Expected_Tests} += $max;
+        $self->{Have_Plan}      = 0;
+
+        # $self->_output_plan($max) unless $self->no_header;
+    }
+    return $self->{Expected_Tests};
 }
 
 sub _skip {
