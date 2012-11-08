@@ -62,7 +62,7 @@ sub _failure_output {
 sub _format_name {
     my ( $self, $test ) = @_;
     my $name = $test;
-    my $periods = '=' x ((( $self->_longest + 2 - length $test )/2)+1);
+    my $periods = '=' x (( $self->_longest + 2 - length $test ));
 
     $self->_output("\n");
     $self->_set_colors('yellow');
@@ -72,7 +72,7 @@ sub _format_name {
         $self->_output("$stamp ");
         $self->_set_colors('yellow');
     }
-    $self->_output("$periods> ");
+    $self->_output("==> ");
     $self->_set_colors('cyan');
     $self->_output("$name");
     $self->_set_colors('yellow');
