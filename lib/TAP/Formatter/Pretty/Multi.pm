@@ -79,6 +79,7 @@ sub _format_name {
     $self->_output(" <$periods\n");
     $self->_set_colors('reset');
 
+    return ''; # as pretty format name has already been written
 }
 
 1;
