@@ -4,7 +4,7 @@ use warnings;
 use 5.010001;
 our $VERSION = '0.13';
 
-use Test::Builder;
+use Test::Builder 0.82;
 use Term::Encoding ();
 use File::Spec ();
 use Term::ANSIColor qw/colored/;

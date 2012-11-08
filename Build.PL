@@ -19,6 +19,7 @@ my $build = Module::Build->new(
         'Scope::Guard' => 0,
         'Carp' => 0,
         'TAP::Harness' => 0,
+        'Test::Builder' => 0.82, # in_todo
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
