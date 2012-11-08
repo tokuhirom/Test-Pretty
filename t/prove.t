@@ -5,7 +5,7 @@ use Test::More;
 use App::Prove;
 
 my $prove = App::Prove->new();
-$prove->process_args('--norc', '-Pretty', 't/00_compile.t');
+$prove->process_args('--norc', '--QUIET', '-Pretty', 't/00_compile.t');
 ok($prove->run());
 
 done_testing;

@@ -9,7 +9,9 @@ sub load {
     my $app = $p->{app_prove};
     # make pretty output for testing only one file.
     if (@{$app->argv} == 1 && -f $app->argv->[0]) {
-        $app->verbose(1);
+        unless ($app->quiet || $app->really_quiet) {
+            $app->verbose(1);
+        }
         $app->formatter('TAP::Formatter::Pretty::Single');
         $app->harness('Test::Pretty::Harness');
         $ENV{PERL_TEST_PRETTY_ENABLED} = 1;
