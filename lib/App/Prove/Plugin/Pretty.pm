@@ -11,6 +11,7 @@ sub load {
     if (@{$app->argv} == 1 && -f $app->argv->[0]) {
         $app->verbose(1);
         $app->formatter('TAP::Formatter::Pretty::Single');
+        $app->harness('Test::Pretty::Harness');
         $ENV{PERL_TEST_PRETTY_ENABLED} = 1;
         $ENV{PERL5OPT} .= ' -MTest::Pretty';
     } elsif ($app->verbose) {

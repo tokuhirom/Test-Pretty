@@ -31,6 +31,7 @@ t/plx/skip_all.plx
 t/plx/subtests_have_plan.plx
 t/plx/test_requires.plx
 t/plx/typester.plx
+t/prove.t
 t/skip.t
 t/skip_all.t
 t/subtests_have_plan.t
