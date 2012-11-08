@@ -28,9 +28,11 @@ t/plx/builder_skip.plx
 t/plx/iss5.plx
 t/plx/skip.plx
 t/plx/skip_all.plx
+t/plx/test_requires.plx
 t/plx/typester.plx
 t/skip.t
 t/skip_all.t
+t/test_requires.t
 t/typester.t
 t/Util.pm
 xt/01_podspell.t

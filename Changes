@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Pretty
 
+0.12
+
+    - fixed support for Test::Requires
+
 0.11
 
     - decode source code as utf-8 by default
