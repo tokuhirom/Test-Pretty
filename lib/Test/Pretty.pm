@@ -122,7 +122,8 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
 
 END {
     my $builder = Test::Builder->new;
-    if ($SHOW_DUMMY_TAP) {
+    my $real_exit_code = $?;
+    if ($SHOW_DUMMY_TAP && !$real_exit_code) {
         printf("\n%s\n", $builder->is_passing ? 'ok' : 'not ok');
         if ($builder->is_passing) {
             ## no critic (Variables::RequireLocalizedPunctuationVars)

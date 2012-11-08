@@ -12,11 +12,4 @@ sub new {
     return $class->SUPER::new($arg_for);
 }
 
-package # hide from pause
-    Test::Pretty::Parser;
-use parent qw/TAP::Parser/;
-
-# Test::Pretty outputs 1 test results without plan line.
-sub plan { 1 }
-
 1;

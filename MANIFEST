@@ -1,6 +1,7 @@
 .travis.yml
 Build.PL
 Changes
+eg/fail.t
 eg/messagefilter.t
 eg/skip.t
 eg/test.pl
@@ -14,12 +15,18 @@ lib/TAP/Formatter/Pretty/Single.pm
 lib/TAP/Formatter/Pretty/Single/Session.pm
 lib/Test/Pretty.pm
 lib/Test/Pretty/Harness.pm
+lib/Test/Pretty/Parser.pm
 LICENSE
 MANIFEST			This list of files
 META.json
 META.yml
 README
 t/00_compile.t
+t/iss5.t
+t/plx/iss5.plx
+t/plx/typester.plx
+t/typester.t
+t/Util.pm
 xt/01_podspell.t
 xt/02_perlcritic.t
 xt/03_pod.t

@@ -18,6 +18,7 @@ my $build = Module::Build->new(
         'Term::ANSIColor' => '3.02',
         'Scope::Guard' => 0,
         'Carp' => 0,
+        'TAP::Harness' => 0,
     },
 
     no_index    => { 'directory' => [ 'inc' ] },

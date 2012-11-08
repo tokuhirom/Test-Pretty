@@ -1,8 +1,9 @@
 use strict;
 use warnings;
 use Test::More;
+use t::Util;
 
-my $out = `$^X -Ilib -MTest::Pretty t/plx/typester.plx`;
+my $out = run_test('t/plx/typester.plx');
 like $out, qr/1はOKなはず！/;
 
 done_testing;
