@@ -26,12 +26,14 @@ t/builder_skip.t
 t/iss5.t
 t/plx/builder_skip.plx
 t/plx/iss5.plx
+t/plx/no_perl5opt.plx
 t/plx/skip.plx
 t/plx/skip_all.plx
 t/plx/subtests_have_plan.plx
 t/plx/test_requires.plx
 t/plx/typester.plx
 t/prove.t
+t/prove_no_perl5opt.t
 t/skip.t
 t/skip_all.t
 t/subtests_have_plan.t

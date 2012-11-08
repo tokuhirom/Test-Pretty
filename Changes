@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Pretty
 
+0.15
+
+    - do not use PERL5OPT, PERl5OPT affects to child processes.
+
 0.13
 
     - do not fail on plan in subtest

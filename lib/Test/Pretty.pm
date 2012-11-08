@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.010001;
-our $VERSION = '0.14';
+our $VERSION = '0.15';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
