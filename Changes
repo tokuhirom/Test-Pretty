@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Pretty
 
+0.13
+
+    - do not fail on plan in subtest
+
 0.12
 
     - fixed support for Test::Requires
