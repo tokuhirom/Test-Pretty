@@ -43,6 +43,7 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
         # do nothing
     };
     *Test::Builder::skip = \&_skip;
+    *Test::Builder::skip_all = \&_skip_all;
 
     my %plan_cmds = (
         no_plan     => \&Test::Builder::no_plan,
