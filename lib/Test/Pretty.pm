@@ -12,23 +12,26 @@ use Scope::Guard;
 use Carp ();
 
 use Cwd ();
+
+my $SHOW_DUMMY_TAP;
+my $TERM_ENCODING = Term::Encoding::term_encoding();
+my $ENCODING_IS_UTF8 = $TERM_ENCODING =~ /^utf-?8$/i;
+
 our $BASE_DIR = Cwd::getcwd();
 my %filecache;
 my $get_src_line = sub {
     my ($filename, $lineno) = @_;
     $filename = File::Spec->rel2abs($filename, $BASE_DIR);
+    # read a source as utf-8... Yes. it's bad. but works for most of users.
+    # I may need to remove binmode for STDOUT?
     my $lines = $filecache{$filename} ||= do {
-        open my $fh, '<', $filename;
+        open my $fh, "<:encoding(utf-8)", $filename;
         [<$fh>]
     };
     my $line = $lines->[$lineno-1];
     $line =~ s/^\s+|\s+$//g;
     return $line;
 };
-
-my $SHOW_DUMMY_TAP;
-my $TERM_ENCODING = Term::Encoding::term_encoding();
-my $ENCODING_IS_UTF8 = $TERM_ENCODING =~ /^utf-?8$/i;
 
 if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
     # make pretty
