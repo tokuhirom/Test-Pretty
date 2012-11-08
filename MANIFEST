@@ -22,9 +22,15 @@ META.json
 META.yml
 README
 t/00_compile.t
+t/builder_skip.t
 t/iss5.t
+t/plx/builder_skip.plx
 t/plx/iss5.plx
+t/plx/skip.plx
+t/plx/skip_all.plx
 t/plx/typester.plx
+t/skip.t
+t/skip_all.t
 t/typester.t
 t/Util.pm
 xt/01_podspell.t

@@ -1,5 +1,14 @@
 Revision history for Perl extension Test::Pretty
 
+0.11
+
+    - decode source code as utf-8 by default
+      (reported by typester++)
+    - fixed handling die-ing in subtest
+      (reported by typester++)
+    - handle skipping corectlly
+      (reported by miyagawa++)
+
 0.10
 
     - added -Pretty module
