@@ -15,13 +15,11 @@ sub load {
         $app->formatter('TAP::Formatter::Pretty::Single');
         $app->harness('Test::Pretty::Harness');
         $ENV{PERL_TEST_PRETTY_ENABLED} = 1;
-        $ENV{PERL5OPT} .= ' -MTest::Pretty';
     } elsif ($app->verbose) {
     # make pretty output for verbose multiple file test.
         $app->formatter('TAP::Formatter::Pretty::Multi');
         $app->harness('Test::Pretty::Harness');
         $ENV{PERL_TEST_PRETTY_ENABLED} = 1;
-        $ENV{PERL5OPT} .= ' -MTest::Pretty';
     } else {
         # do nothing.
     }
