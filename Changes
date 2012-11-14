@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Pretty
 
+0.16
+
+    - required minimum version of Perl is now 5.8.1
+
 0.15
 
     - do not use PERL5OPT, PERl5OPT affects to child processes.

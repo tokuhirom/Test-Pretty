@@ -12,7 +12,7 @@ my $build = Module::Build->new(
     },
     configure_requires   => { 'Module::Build' => '0.38' },
     requires             => {
-        perl => '5.010001',
+        perl => '5.008001',
         'parent'                        => '0',
         'Term::Encoding' => 0,
         'Term::ANSIColor' => '3.02',

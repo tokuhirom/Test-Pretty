@@ -1,8 +1,8 @@
 package Test::Pretty;
 use strict;
 use warnings;
-use 5.010001;
-our $VERSION = '0.15';
+use 5.008001;
+our $VERSION = '0.16';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
