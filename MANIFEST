@@ -24,11 +24,14 @@ README
 t/00_compile.t
 t/builder_skip.t
 t/iss5.t
+t/no_test_in_subtest.t
 t/plx/builder_skip.plx
 t/plx/iss5.plx
 t/plx/no_perl5opt.plx
+t/plx/no_test_in_subtest.plx
 t/plx/skip.plx
 t/plx/skip_all.plx
+t/plx/subtest_ok.plx
 t/plx/subtests_have_plan.plx
 t/plx/test_requires.plx
 t/plx/typester.plx
@@ -36,6 +39,7 @@ t/prove.t
 t/prove_no_perl5opt.t
 t/skip.t
 t/skip_all.t
+t/subtest_ok.t
 t/subtests_have_plan.t
 t/test_requires.t
 t/typester.t

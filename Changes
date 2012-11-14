@@ -1,5 +1,10 @@
 Revision history for Perl extension Test::Pretty
 
+0.17
+
+    - [master 18673b0] Fail the test case when subtest does not have test case https://github.com/tokuhirom/Test-Pretty/issues/7
+      (reported by soh335++)
+
 0.16
 
     - required minimum version of Perl is now 5.8.1
