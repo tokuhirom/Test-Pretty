@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Pretty
 
+0.18
+
+    - no feature changes, fixed typester.t
+
 0.17
 
     - [master 18673b0] Fail the test case when subtest does not have test case https://github.com/tokuhirom/Test-Pretty/issues/7
