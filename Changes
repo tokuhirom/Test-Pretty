@@ -1,5 +1,10 @@
 Revision history for Perl extension Test::Pretty
 
+0.19
+
+    - Bad plan should be fail.
+      (Reporeted by Norbert Gruener)
+
 0.18
 
     - no feature changes, fixed typester.t

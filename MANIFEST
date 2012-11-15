@@ -22,9 +22,11 @@ META.json
 META.yml
 README
 t/00_compile.t
+t/bad_plan.t
 t/builder_skip.t
 t/iss5.t
 t/no_test_in_subtest.t
+t/plx/bad_plan.plx
 t/plx/builder_skip.plx
 t/plx/iss5.plx
 t/plx/no_perl5opt.plx

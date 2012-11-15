@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.18';
+our $VERSION = '0.19';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
@@ -128,6 +128,10 @@ END {
     my $builder = Test::Builder->new;
     my $real_exit_code = $?;
     if ($SHOW_DUMMY_TAP && !$real_exit_code) {
+        if ($builder->{Curr_Test} != $builder->{Expected_Tests}) {
+            $builder->diag("Bad plan: $builder->{Curr_Test} != $builder->{Expected_Tests}");
+            $builder->is_passing(0);
+        }
         printf("\n%s\n", $builder->is_passing ? 'ok' : 'not ok');
         if ($builder->is_passing) {
             ## no critic (Variables::RequireLocalizedPunctuationVars)
