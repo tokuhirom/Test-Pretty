@@ -26,7 +26,8 @@ my $get_src_line = sub {
     # read a source as utf-8... Yes. it's bad. but works for most of users.
     # I may need to remove binmode for STDOUT?
     my $lines = $filecache{$filename} ||= do {
-        open my $fh, "<:encoding(utf-8)", $filename;
+        open my $fh, "<:encoding(utf-8)", $filename
+            or return '';
         [<$fh>]
     };
     my $line = $lines->[$lineno-1];
