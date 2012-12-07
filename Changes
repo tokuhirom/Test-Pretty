@@ -1,5 +1,10 @@
 Revision history for Perl extension Test::Pretty
 
+0.20
+
+    - fixed exit code on non-prove.
+      https://rt.cpan.org/Public/Bug/Display.html?id=81661
+
 0.19
 
     - Bad plan should be fail.
