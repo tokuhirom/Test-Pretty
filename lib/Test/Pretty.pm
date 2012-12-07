@@ -128,14 +128,16 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
 END {
     my $builder = Test::Builder->new;
     my $real_exit_code = $?;
-    if ($SHOW_DUMMY_TAP && !$real_exit_code) {
-        if ($builder->{Have_Plan}) {
-            if ($builder->{Curr_Test} != $builder->{Expected_Tests}) {
-                $builder->diag("Bad plan: $builder->{Curr_Test} != $builder->{Expected_Tests}");
-                $builder->is_passing(0);
-            }
+    if ($builder->{Have_Plan}) {
+        if ($builder->{Curr_Test} != $builder->{Expected_Tests}) {
+            $builder->diag("Bad plan: $builder->{Curr_Test} != $builder->{Expected_Tests}");
+            $builder->is_passing(0);
         }
+    }
+    if ($SHOW_DUMMY_TAP) {
         printf("\n%s\n", $builder->is_passing ? 'ok' : 'not ok');
+    }
+    if (!$real_exit_code) {
         if ($builder->is_passing) {
             ## no critic (Variables::RequireLocalizedPunctuationVars)
             $? = 0;
