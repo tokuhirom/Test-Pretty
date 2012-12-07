@@ -135,7 +135,7 @@ END {
         }
     }
     if ($SHOW_DUMMY_TAP) {
-        printf("\n%s\n", $builder->is_passing ? 'ok' : 'not ok');
+        printf("\n%s\n", ($?==0 && $builder->is_passing) ? 'ok' : 'not ok');
     }
     if (!$real_exit_code) {
         if ($builder->is_passing) {
