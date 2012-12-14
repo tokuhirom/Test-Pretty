@@ -5,7 +5,7 @@ use utf8;
 use parent qw/Exporter/;
 
 use Test::More;
-use File::Temp;
+use File::Temp qw/ tempfile /;
 use POSIX;
 use TAP::Parser;
 
@@ -17,15 +17,17 @@ sub run_test {
     local $ENV{HARNESS_ACTIVE} = 1;
     local $ENV{PERL_TEST_PRETTY_ENABLED} = 1;
 
-    my $tmp = File::Temp->new;
+    my ($tmp, $filename) = tempfile();
+    close $tmp;
 
     my $pid = fork;
     die $! unless defined $pid;
     if ($pid) {
         waitpid($pid, 0);
 
-        open my $fh, '<', $tmp->filename or die $!;
+        open my $fh, '<', $filename or die $!;
         my $out = do { local $/; <$fh> };
+        close $fh;
         note 'x' x 80;
         note $out;
         note 'x' x 80;
@@ -33,8 +35,8 @@ sub run_test {
         return $out;
     } else {
         # child
-        open(STDOUT, ">&", $tmp) or die "Cannot redirect";
-        open(STDERR, ">&", $tmp) or die "Cannot redirect";
+        open(STDOUT, ">", $filename) or die "Cannot redirect";
+        open(STDERR, ">", $filename) or die "Cannot redirect";
         exec $^X, '-Ilib', '-MTest::Pretty', $path;
         die "Cannot exec";
     }
@@ -43,15 +45,23 @@ sub run_test {
 sub exit_status_is {
     my ($expected) = @_;
 
-    ok(POSIX::WIFEXITED($?));
-    is(POSIX::WEXITSTATUS($?), $expected);
+    if ($^O eq 'MSWin32') {
+        is($?, $expected);
+    } else {
+        ok(POSIX::WIFEXITED($?));
+        is(POSIX::WEXITSTATUS($?), $expected);
+    }
 }
 
 sub exit_status_isnt {
     my ($expected) = @_;
 
-    ok(POSIX::WIFEXITED($?));
-    isnt(POSIX::WEXITSTATUS($?), $expected);
+    if ($^O eq 'MSWin32') {
+        isnt($?, $expected);
+    } else {
+        ok(POSIX::WIFEXITED($?));
+        isnt(POSIX::WEXITSTATUS($?), $expected);
+    }
 }
 
 sub parse_tap {
