@@ -1,5 +1,9 @@
 Revision history for Perl extension Test::Pretty
 
+0.21
+
+    - test case fix for mswin32
+
 0.20
 
     - fixed exit code on non-prove.
