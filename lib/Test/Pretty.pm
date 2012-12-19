@@ -128,7 +128,7 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
 END {
     my $builder = Test::Builder->new;
     my $real_exit_code = $?;
-    if ($builder->{Have_Plan}) {
+    if ($builder->{Have_Plan} && !$builder->{No_Plan}) {
         if ($builder->{Curr_Test} != $builder->{Expected_Tests}) {
             $builder->diag("Bad plan: $builder->{Curr_Test} != $builder->{Expected_Tests}");
             $builder->is_passing(0);
