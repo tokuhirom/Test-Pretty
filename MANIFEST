@@ -26,12 +26,14 @@ t/bad_plan.t
 t/bad_plan2.t
 t/builder_skip.t
 t/iss5.t
+t/no_plan.t
 t/no_test_in_subtest.t
 t/plx/bad_plan.plx
 t/plx/bad_plan2.plx
 t/plx/builder_skip.plx
 t/plx/iss5.plx
 t/plx/no_perl5opt.plx
+t/plx/no_plan.plx
 t/plx/no_test_in_subtest.plx
 t/plx/skip.plx
 t/plx/skip_all.plx
