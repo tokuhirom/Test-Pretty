@@ -9,7 +9,7 @@ exit_status_is(0);
 
 my $result = parse_tap($tap);
 ok($result->skip_all);
-ok(!$result->has_problems, 'has problems');
+ok(!$result->has_problems, 'no problem');
 
 done_testing;
 
