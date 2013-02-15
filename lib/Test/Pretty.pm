@@ -128,6 +128,13 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
 END {
     my $builder = Test::Builder->new;
     my $real_exit_code = $?;
+
+    # see Test::Builder::_ending
+    if( !$builder->{Have_Plan} and $builder->{Curr_Test} ) {
+        $builder->is_passing(0);
+        $builder->diag("Tests were run but no plan was declared and done_testing() was not seen.");
+    }
+
     if ($builder->{Have_Plan} && !$builder->{No_Plan}) {
         if ($builder->{Curr_Test} != $builder->{Expected_Tests}) {
             $builder->diag("Bad plan: $builder->{Curr_Test} != $builder->{Expected_Tests}");
