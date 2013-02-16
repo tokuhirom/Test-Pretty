@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.22';
+our $VERSION = '0.23';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
@@ -40,9 +40,7 @@ if ((!$ENV{HARNESS_ACTIVE} || $ENV{PERL_TEST_PRETTY_ENABLED})) {
     no warnings 'redefine';
     *Test::Builder::subtest = \&_subtest;
     *Test::Builder::ok = \&_ok;
-    *Test::Builder::done_testing = sub {
-        # do nothing
-    };
+    *Test::Builder::done_testing = \&_done_testing;
     *Test::Builder::skip = \&_skip;
     *Test::Builder::skip_all = \&_skip_all;
     *Test::Builder::expected_tests = \&_expected_tests;
@@ -266,6 +264,14 @@ ERR
     $self->_check_is_passing_plan();
 
     return $test ? 1 : 0;
+}
+
+sub _done_testing {
+    # do nothing
+    my $builder = Test::More->builder;
+    $builder->{Have_Plan} = 1;
+    $builder->{Done_Testing} = [caller];
+    $builder->{Expected_Tests} = $builder->current_test;
 }
 
 sub _subtest {
