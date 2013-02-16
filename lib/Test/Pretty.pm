@@ -7,12 +7,14 @@ our $VERSION = '0.23';
 use Test::Builder 0.82;
 use Term::Encoding ();
 use File::Spec ();
-use Term::ANSIColor qw/colored/;
+use Term::ANSIColor ();
 use Test::More ();
 use Scope::Guard;
 use Carp ();
 
 use Cwd ();
+
+*colored = -t STDOUT ? \&Term::ANSIColor::colored : sub { $_[1] };
 
 my $SHOW_DUMMY_TAP;
 my $TERM_ENCODING = Term::Encoding::term_encoding();
