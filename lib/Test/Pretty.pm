@@ -224,7 +224,7 @@ ERR
 
     if( defined $name ) {
         $name =~ s|#|\\#|g;    # # in a name can confuse Test::Harness.
-        $out .= colored(['BRIGHT_BLACK'], "  $name");
+        $out .= colored([$ENV{TEST_PRETTY_COLOR_NAME} || 'BRIGHT_BLACK'], "  $name");
         $result->{name} = $name;
     }
     else {
