@@ -14,7 +14,7 @@ use Carp ();
 
 use Cwd ();
 
-*colored = -t STDOUT ? \&Term::ANSIColor::colored : sub { $_[1] };
+*colored = -t STDOUT || $ENV{PERL_TEST_PRETTY_ENABLED} ? \&Term::ANSIColor::colored : sub { $_[1] };
 
 my $SHOW_DUMMY_TAP;
 my $TERM_ENCODING = Term::Encoding::term_encoding();
