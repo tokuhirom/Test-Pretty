@@ -1,0 +1,88 @@
+{
+   "abstract" : "Smile Precure!",
+   "author" : [
+      "Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Minilla/v0.0.53, CPAN::Meta::Converter version 2.120921",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Test-Pretty",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "xt",
+         "inc",
+         "share",
+         "eg",
+         "examples",
+         "author"
+      ]
+   },
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "CPAN::Meta" : "0",
+            "CPAN::Meta::Prereqs" : "0",
+            "Module::Build" : "0.38"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Pod::Wordlist::hanekomu" : "0",
+            "Test::CPAN::Meta" : "0",
+            "Test::MinimumVersion" : "0.10108",
+            "Test::Pod" : "1.41",
+            "Test::Spelling" : "0"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Carp" : "0",
+            "File::Temp" : "0",
+            "Scope::Guard" : "0",
+            "TAP::Formatter::Base" : "0",
+            "TAP::Formatter::Session" : "0",
+            "TAP::Harness" : "0",
+            "TAP::Parser" : "0",
+            "Term::ANSIColor" : "3.02",
+            "Term::Encoding" : "0",
+            "Test::Builder" : "0.82",
+            "Test::More" : "0.98",
+            "autodie" : "0",
+            "parent" : "0",
+            "perl" : "5.008001"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "App::Prove" : "0",
+            "Test::Requires" : "0"
+         }
+      }
+   },
+   "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/tokuhirom/Test-Pretty/issues"
+      },
+      "homepage" : "https://github.com/tokuhirom/Test-Pretty",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/tokuhirom/Test-Pretty.git",
+         "web" : "https://github.com/tokuhirom/Test-Pretty"
+      }
+   },
+   "version" : "0.24",
+   "x_contributors" : [
+      "Kenichi Ishigaki <ishigaki@cpan.org>",
+      "mattn <mattn.jp@gmail.com>",
+      "Tasuku SUENAGA a.k.a. gunyarakun <tasuku-s-github@titech.ac>",
+      "tokuhirom <tokuhirom@gmail.com>"
+   ]
+}
