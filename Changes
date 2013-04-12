@@ -2,6 +2,12 @@ Revision history for Perl extension Test::Pretty
 
 {{$NEXT}}
 
+0.25 2013-04-12T01:49:16Z
+
+    - Test fail when pass() receives arguments inside of subtest block
+      (Reported by sunaot++)
+      https://github.com/tokuhirom/Test-Pretty/issues/13
+
 0.24 2013-02-16T22:43:03
 
     - Do not colorize on non terminal output.
