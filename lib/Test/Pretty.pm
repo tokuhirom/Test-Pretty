@@ -16,6 +16,8 @@ use Cwd ();
 
 *colored = -t STDOUT || $ENV{PERL_TEST_PRETTY_ENABLED} ? \&Term::ANSIColor::colored : sub { $_[1] };
 
+my $ORIGINAL_PID = $$;
+
 my $SHOW_DUMMY_TAP;
 my $TERM_ENCODING = Term::Encoding::term_encoding();
 my $ENCODING_IS_UTF8 = $TERM_ENCODING =~ /^utf-?8$/i;
@@ -131,6 +133,12 @@ END {
     my $builder = Test::Builder->new;
     my $real_exit_code = $?;
 
+    # Don't bother with an ending if this is a forked copy.  Only the parent
+    # should do the ending.
+    if( $ORIGINAL_PID!= $$ ) {
+        goto NO_ENDING;
+    }
+
     # see Test::Builder::_ending
     if( !$builder->{Have_Plan} and $builder->{Curr_Test} ) {
         $builder->is_passing(0);
@@ -156,6 +164,7 @@ END {
             $? = 1;
         }
     }
+NO_ENDING:
 }
 
 sub _skip_all {
