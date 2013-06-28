@@ -28,6 +28,10 @@ sub load {
 1;
 __END__
 
+=encoding utf-8
+
+=for stopwords .proverc
+
 =head1 NAME
 
 App::Prove::Plugin::Pretty - Test::Pretty plugin for prove

@@ -2,6 +2,11 @@ Revision history for Perl extension Test::Pretty
 
 {{$NEXT}}
 
+0.26 2013-06-28T10:01:17Z
+
+    - Care the fork(2)
+      (tokuhirom)
+
 0.25 2013-04-12T01:49:16Z
 
     - Test fail when pass() receives arguments inside of subtest block

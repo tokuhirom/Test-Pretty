@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v0.0.53, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Minilla/v0.5.3, CPAN::Meta::Converter version 2.130880",
    "license" : [
       "perl_5"
    ],
@@ -34,11 +34,10 @@
       },
       "develop" : {
          "requires" : {
-            "Pod::Wordlist::hanekomu" : "0",
             "Test::CPAN::Meta" : "0",
             "Test::MinimumVersion" : "0.10108",
             "Test::Pod" : "1.41",
-            "Test::Spelling" : "0"
+            "Test::Spellunker" : "v0.2.7"
          }
       },
       "runtime" : {
@@ -78,11 +77,13 @@
          "web" : "https://github.com/tokuhirom/Test-Pretty"
       }
    },
-   "version" : "0.25",
+   "version" : "0.26",
    "x_contributors" : [
       "Kenichi Ishigaki <ishigaki@cpan.org>",
       "mattn <mattn.jp@gmail.com>",
       "Tasuku SUENAGA a.k.a. gunyarakun <tasuku-s-github@titech.ac>",
+      "Andreas Marienborg <andreas.marienborg@gmail.com>",
+      "Zakariyya Mughal <zaki.mughal@gmail.com>",
       "tokuhirom <tokuhirom@gmail.com>"
    ]
 }

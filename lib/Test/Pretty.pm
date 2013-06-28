@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.25';
+our $VERSION = '0.26';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
@@ -369,6 +369,8 @@ sub _skip {
 __END__
 
 =encoding utf8
+
+=for stopwords cho45++
 
 =head1 NAME
 
