@@ -3,6 +3,7 @@ use warnings;
 use utf8;
 use Test::More;
 use t::Util;
+BEGIN { $ENV{RELEASE_TESTING}=0}
 
 my $tap = run_test('t/plx/test_requires.plx');
 exit_status_is(0);
