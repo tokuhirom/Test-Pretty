@@ -1,4 +1,4 @@
-Revision history for Perl extension Test::Pretty
+Revision history for Perl module Test::Pretty
 
 {{$NEXT}}
 
@@ -26,50 +26,51 @@ Revision history for Perl extension Test::Pretty
 
     - Do not pass when unexpected exit
 
-0.22
+0.22 2012-12-19
 
     - do not fail with no_plan(gunyarakun++)
 
-0.21
+0.21 2012-12-13
 
     - test case fix for mswin32
 
-0.20
+0.20 2012-12-06
 
     - fixed exit code on non-prove.
       https://rt.cpan.org/Public/Bug/Display.html?id=81661
 
-0.19
+0.19 2012-11-15
 
     - Bad plan should be fail.
       (Reporeted by Norbert Gruener)
 
-0.18
+0.18 2012-11-14
 
     - no feature changes, fixed typester.t
 
-0.17
+0.17 2012-11-14
 
-    - [master 18673b0] Fail the test case when subtest does not have test case https://github.com/tokuhirom/Test-Pretty/issues/7
+    - [master 18673b0] Fail the test case when subtest does not have
+      test case https://github.com/tokuhirom/Test-Pretty/issues/7
       (reported by soh335++)
 
-0.16
+0.16 2012-11-14
 
     - required minimum version of Perl is now 5.8.1
 
-0.15
+0.15 2012-11-08
 
     - do not use PERL5OPT, PERl5OPT affects to child processes.
 
-0.13
+0.13 2012-11-08
 
     - do not fail on plan in subtest
 
-0.12
+0.12 2012-11-08
 
     - fixed support for Test::Requires
 
-0.11
+0.11 2012-11-08
 
     - decode source code as utf-8 by default
       (reported by typester++)
@@ -78,43 +79,45 @@ Revision history for Perl extension Test::Pretty
     - handle skipping corectlly
       (reported by miyagawa++)
 
-0.10
+0.10 2012-11-06
 
     - added -Pretty module
 
-0.09
+0.09 2012-11-06
 
     - removed code using Test::More.
     - support skip_all
 
-0.08
+0.08 2012-11-06
 
     - prove support
 
-0.07
+0.07 2012-10-26
 
     - fixed deps. latest Term::ANSIColor is required.
 
-0.06
+0.06 2012-10-23
 
     - Display better diag for bad $Test::Builder::Level
 
-0.05
+0.05 2012-10-22
 
     - prettify the TAP for prove users.
 
-0.04
+0.04 2012-10-22
 
     - doc fix
 
-0.03
+0.03 2012-10-22
 
     - docs
     - do not prettify under the win32
 
-0.02
+0.02 2012-10-22
 
     - fixed deps
 
-0.01    Tue Oct 23 10:28:43 2012
+0.01 2012-10-22
+
     - original version
+
