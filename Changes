@@ -2,6 +2,10 @@ Revision history for Perl module Test::Pretty
 
 {{$NEXT}}
 
+0.28 2014-03-03T07:02:32Z
+
+    - Added experimental $NO_ENDING
+
 0.27 2013-07-26T04:48:44Z
 
     - localize $@
