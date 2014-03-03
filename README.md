@@ -57,11 +57,11 @@ Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>
 
 # THANKS TO
 
-Some code was taken from [Test::Name::FromLine](http://search.cpan.org/perldoc?Test::Name::FromLine), thanks cho45++
+Some code was taken from [Test::Name::FromLine](https://metacpan.org/pod/Test::Name::FromLine), thanks cho45++
 
 # SEE ALSO
 
-[Acme::PrettyCure](http://search.cpan.org/perldoc?Acme::PrettyCure)
+[Acme::PrettyCure](https://metacpan.org/pod/Acme::PrettyCure)
 
 # LICENSE
 
