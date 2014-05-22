@@ -38,6 +38,7 @@ my $get_src_line = sub {
             or return '';
         [<$fh>]
     }->();
+    return unless ref $lines eq 'ARRAY';
     my $line = $lines->[$lineno-1];
     $line =~ s/^\s+|\s+$//g;
     return $line;
