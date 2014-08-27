@@ -44,8 +44,10 @@ sub _set_colors {
 sub _output_success {
     my ( $self, $msg ) = @_;
     $self->_set_colors('green');
+    my $has_newline = chomp $msg;
     $self->_output($msg);
     $self->_set_colors('reset');
+    $self->_output($/) if $has_newline;
 }
 
 sub _failure_output {
@@ -76,8 +78,9 @@ sub _format_name {
     $self->_set_colors('cyan');
     $self->_output("$name");
     $self->_set_colors('yellow');
-    $self->_output(" <$periods\n");
+    $self->_output(" <$periods");
     $self->_set_colors('reset');
+    $self->_output("\n");
 
     return ''; # as pretty format name has already been written
 }
