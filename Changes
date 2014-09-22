@@ -2,6 +2,19 @@ Revision history for Perl module Test::Pretty
 
 {{$NEXT}}
 
+0.30 2014-09-19T11:21:17Z
+
+    commit c479caa313b5c32f969685ca974d63f0efbfdf65
+    Author: Sean Zellmer <sean@lejeunerenard.com>
+    Date:   Sat Sep 13 18:12:03 2014 -0500
+
+        Revamp subtests to use Test::Builder::subtest while remaining pretty
+
+        Decided to overwrite Test::Builder::note instead of writing our own
+        subtest sub without Test::Builder's planning features.
+
+        Also made a design decision to include 'not ok's for subtests but not 'ok's.
+
 0.29 2014-08-28T00:13:07Z
 
     commit 119e7f99047360eedbd84e9a85b79d4cb16a9c18

@@ -77,7 +77,7 @@
          "web" : "https://github.com/tokuhirom/Test-Pretty"
       }
    },
-   "version" : "0.29",
+   "version" : "0.30",
    "x_contributors" : [
       "Kenichi Ishigaki <ishigaki@cpan.org>",
       "mattn <mattn.jp@gmail.com>",
@@ -88,6 +88,7 @@
       "Neil Bowers <neil@bowers.com>",
       "Valcho Nedelchev <vulcho@gmail.com>",
       "moznion <moznion@gmail.com>",
+      "Sean Zellmer <sean@lejeunerenard.com>",
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ]
 }
