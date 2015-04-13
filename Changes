@@ -2,6 +2,16 @@ Revision history for Perl module Test::Pretty
 
 {{$NEXT}}
 
+0.31 2015-04-13T04:12:57Z
+
+    commit 35ea62941bbc827cd6695088cacdf8ad5fef4dcd
+    Author: Zoffix Znet <cpan@zoffix.com>
+    Date:   Sun Apr 12 00:37:23 2015 -0400
+
+        Skip on Windows to avoid a segfault
+
+        This is an issue deep in perl itself, due to encoding+fork. See Issue #2
+
 0.30 2014-09-19T11:21:17Z
 
     commit c479caa313b5c32f969685ca974d63f0efbfdf65
