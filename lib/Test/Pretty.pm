@@ -2,7 +2,7 @@ package Test::Pretty;
 use strict;
 use warnings;
 use 5.008001;
-our $VERSION = '0.28';
+our $VERSION = '0.30';
 
 use Test::Builder 0.82;
 use Term::Encoding ();
@@ -24,6 +24,8 @@ my $ENCODING_IS_UTF8 = $TERM_ENCODING =~ /^utf-?8$/i;
 
 our $NO_ENDING; # Force disable the Test::Pretty finalization process.
 
+my $ORIGINAL_subtest = \&Test::Builder::subtest;
+
 our $BASE_DIR = Cwd::getcwd();
 my %filecache;
 my $get_src_line = sub {
@@ -38,6 +40,7 @@ my $get_src_line = sub {
             or return '';
         [<$fh>]
     }->();
+    return unless ref $lines eq 'ARRAY';
     my $line = $lines->[$lineno-1];
     $line =~ s/^\s+|\s+$//g;
     return $line;
@@ -176,15 +179,21 @@ NO_ENDING:
 
 sub _skip_all {
     my ($self, $reason) = @_;
+
+    $self->{Skip_All} = $self->parent ? $reason : 1;
+
     printf("1..0 # SKIP %s\n", $reason);
     $SHOW_DUMMY_TAP = 0;
-    exit 0;
+    if ( $self->parent ) {
+        die bless {} => 'Test::Builder::Exception';
+    }
+    exit(0);
 }
 
 sub _ok {
     my( $self, $test, $name ) = @_;
 
-    my ($pkg, $filename, $line) = caller($Test::Builder::Level);
+    my ($pkg, $filename, $line, $sub) = caller($Test::Builder::Level);
     my $src_line;
     if (defined($line)) {
         $src_line = $get_src_line->($filename, $line);
@@ -262,7 +271,8 @@ ERR
     $self->{Test_Results}[ $self->{Curr_Test} - 1 ] = $result;
     $out .= "\n";
 
-    $self->_print($out);
+    # Dont print 'ok's for subtests. It's not pretty.
+    $self->_print($out) unless $sub =~/subtest/ and $test;
 
     unless($test) {
         my $msg = $self->in_todo ? "Failed (TODO)" : "Failed";
@@ -295,26 +305,27 @@ sub _done_testing {
 }
 
 sub _subtest {
-    my ($self, $name, $code) = @_;
-    my $builder = Test::Builder->new();
-    my $orig_indent = $builder->_indent();
-    my $guard = Scope::Guard->new(sub {
-        $builder->_indent($orig_indent);
-    });
-    print {$builder->output} do {
-        $builder->_indent() . "  $name\n";
+    my ($self, $name) = @_;
+    my $orig_indent = $self->_indent();
+    my $ORIGINAL_note = \&Test::Builder::note;
+    no warnings 'redefine';
+    *Test::Builder::note = sub {
+        # Not sure why the output looses its encoding but lets set it back again.
+        # Otherwise we get "Wide character in print" errors.
+        binmode $_[0]->output(), "encoding($TERM_ENCODING)";
+        # If printing the beginning of a subtest, make it pretty
+        if ( $_[1] eq "Subtest: $name") {
+            print {$self->output} do {
+                 $orig_indent . "  $name\n";
+            };
+            return 0;
+        } else {
+            $ORIGINAL_note->(@_);
+        }
     };
-    $builder->_indent($orig_indent . '    ');
-    my $curr_test = $builder->{Curr_Test};
-    my $retval = do {
-        local $builder->{Have_Plan}; # this is bad, but works.
-        $code->();
-    };
-    if ($curr_test == $builder->{Curr_Test}) {
-        # no tests run in subtest.
-        $builder->diag("There is no test case in subtest");
-        $builder->is_passing(0);
-    }
+    # Now that we've redefined note(), let Test::Builder run as normal.
+    my $retval = $ORIGINAL_subtest->(@_);
+    *Test::Builder::note = $ORIGINAL_note;
     $retval;
 }
 
@@ -343,7 +354,7 @@ sub _expected_tests {
         $self->croak("Number of tests must be a positive integer.  You gave it '$max'")
           unless $max =~ /^\+?\d+$/;
 
-        $self->{Expected_Tests} += $max;
+        $self->{Expected_Tests} = $max;
         $self->{Have_Plan}      = 1;
 
         # $self->_output_plan($max) unless $self->no_header;

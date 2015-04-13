@@ -2,6 +2,43 @@ Revision history for Perl module Test::Pretty
 
 {{$NEXT}}
 
+0.30 2014-09-19T11:21:17Z
+
+    commit c479caa313b5c32f969685ca974d63f0efbfdf65
+    Author: Sean Zellmer <sean@lejeunerenard.com>
+    Date:   Sat Sep 13 18:12:03 2014 -0500
+
+        Revamp subtests to use Test::Builder::subtest while remaining pretty
+
+        Decided to overwrite Test::Builder::note instead of writing our own
+        subtest sub without Test::Builder's planning features.
+
+        Also made a design decision to include 'not ok's for subtests but not 'ok's.
+
+0.29 2014-08-28T00:13:07Z
+
+    commit 119e7f99047360eedbd84e9a85b79d4cb16a9c18
+    Author: moznion <moznion@gmail.com>
+    Date:   Wed Aug 27 13:54:20 2014 +0900
+
+        Change the position to reset color
+
+        If we look the result of test with `tail -f` or similar command,
+        then protrude the setting of color to next line. Like so;
+        http://i.gyazo.com/4301e1f57fe02998b13d45bbafc5970e.png
+
+        So I fix this.
+        http://i.gyazo.com/c24cb7c795a6693d51ea9bf7a0f421eb.png
+
+    commit 9a641b8544daa89c1754f9d53bbf04ccf2cb6082
+    Author: Valcho Nedelchev <vulcho@gmail.com>
+    Date:   Fri May 23 01:01:28 2014 +0200
+
+        care the eval
+
+        Fix for error Can't use string ("") as an ARRAY ref while "strict refs"
+        in use … Test/Pretty.pm line 41.
+
 0.28 2014-03-03T07:02:32Z
 
     - Added experimental $NO_ENDING
