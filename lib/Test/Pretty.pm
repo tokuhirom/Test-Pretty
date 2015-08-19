@@ -182,7 +182,7 @@ sub _skip_all {
 
     $self->{Skip_All} = $self->parent ? $reason : 1;
 
-    printf("1..0 # SKIP %s\n", $reason);
+    $self->_print("1..0 # SKIP" . " $reason");
     $SHOW_DUMMY_TAP = 0;
     if ( $self->parent ) {
         die bless {} => 'Test::Builder::Exception';
