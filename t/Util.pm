@@ -46,10 +46,10 @@ sub exit_status_is {
     my ($expected) = @_;
 
     if ($^O eq 'MSWin32') {
-        is($?, $expected);
+        is($?, $expected, 'got expected exit code of '.$expected);
     } else {
-        ok(POSIX::WIFEXITED($?));
-        is(POSIX::WEXITSTATUS($?), $expected);
+        ok(POSIX::WIFEXITED($?), 'existed normally');
+        is(POSIX::WEXITSTATUS($?), $expected, 'got expected exit code of '.$expected);
     }
 }
 
@@ -57,10 +57,10 @@ sub exit_status_isnt {
     my ($expected) = @_;
 
     if ($^O eq 'MSWin32') {
-        isnt($?, $expected);
+        isnt($?, $expected, 'didn\'t get exit code of '.$expected);
     } else {
-        ok(POSIX::WIFEXITED($?));
-        isnt(POSIX::WEXITSTATUS($?), $expected);
+        ok(POSIX::WIFEXITED($?), 'existed normally');
+        isnt(POSIX::WEXITSTATUS($?), $expected, 'didn\'t get exit code of '.$expected);
     }
 }
 
