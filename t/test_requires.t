@@ -9,7 +9,7 @@ my $tap = run_test('t/plx/test_requires.plx');
 exit_status_is(0);
 
 my $result = parse_tap($tap);
-ok($result->skip_all);
+ok($result->skip_all, 'skip all');
 ok(!$result->has_problems, 'no problem');
 
 done_testing;
