@@ -18,7 +18,7 @@ SKIP: {
     } else {
         # parent
         waitpid $pid, 0;
-        is($?, 0);
+        is($?, 0, 'parent returns zero exit code');
     }
 }
 

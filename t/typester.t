@@ -10,7 +10,7 @@ my $ENCODING_IS_UTF8 = $TERM_ENCODING =~ /^utf-?8$/i;
 plan skip_all => 'This test can run on utf-8 system' unless $ENCODING_IS_UTF8;
 
 my $out = run_test('t/plx/typester.plx');
-like $out, qr/1はOKなはず！/;
+like $out, qr/1はOKなはず！/, 'found utf8 characters via line comment';
 
 done_testing;
 

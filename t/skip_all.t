@@ -8,7 +8,7 @@ my $tap = run_test('t/plx/skip_all.plx');
 exit_status_is(0);
 
 my $result = parse_tap($tap);
-ok($result->skip_all);
+ok($result->skip_all, 'got skip all');
 ok(!$result->has_problems, 'has problems');
 
 done_testing;
