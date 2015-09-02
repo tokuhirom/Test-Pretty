@@ -5,7 +5,11 @@ use 5.008001;
 our $VERSION = '0.31';
 
 use Test::Builder 0.82;
+
+# Conditionally load Windows Term encoding
+use if $^O eq 'MSWin32', 'Win32::Console::ANSI';
 use Term::Encoding ();
+
 use File::Spec ();
 use Term::ANSIColor ();
 use Test::More ();
