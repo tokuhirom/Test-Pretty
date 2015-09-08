@@ -56,7 +56,7 @@ And this module outputs TAP when $ENV{HARNESS\_ACTIVE} is true or under the win3
 
 # AUTHOR
 
-Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>
+Tokuhiro Matsuno &lt;tokuhirom AAJKLFJEF@ GMAIL COM>
 
 # THANKS TO
 

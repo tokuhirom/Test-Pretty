@@ -4,7 +4,7 @@
       "Tokuhiro Matsuno <tokuhirom AAJKLFJEF@ GMAIL COM>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.1.1, CPAN::Meta::Converter version 2.141520",
+   "generated_by" : "Minilla/v2.5.0, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "perl_5"
    ],
@@ -77,7 +77,7 @@
          "web" : "https://github.com/tokuhirom/Test-Pretty"
       }
    },
-   "version" : "0.31",
+   "version" : "0.32",
    "x_contributors" : [
       "Kenichi Ishigaki <ishigaki@cpan.org>",
       "mattn <mattn.jp@gmail.com>",
@@ -88,8 +88,9 @@
       "Neil Bowers <neil@bowers.com>",
       "Valcho Nedelchev <vulcho@gmail.com>",
       "moznion <moznion@gmail.com>",
-      "Sean Zellmer <sean@lejeunerenard.com>",
       "Zoffix Znet <cpan@zoffix.com>",
+      "Sean Zellmer <sean@lejeunerenard.com>",
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
-   ]
+   ],
+   "x_serialization_backend" : "JSON::PP version 2.27300"
 }

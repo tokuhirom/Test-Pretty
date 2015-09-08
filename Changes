@@ -2,6 +2,23 @@ Revision history for Perl module Test::Pretty
 
 {{$NEXT}}
 
+0.32 2015-09-08T22:45:39Z
+
+    commit 174ff4d0093bd69bbdc6b151253a2df6f324194a
+    Author: Sean Zellmer <sean@lejeunerenard.com>
+    Date:   Wed Sep 2 16:43:17 2015 -0500
+
+        Conditionally load Win32::Console::ANSI
+
+    commit f6545400905e8f5b1797cf13047b2bac3598cc61
+    Author: Sean Zellmer <sean@lejeunerenard.com>
+    Date:   Wed Aug 19 14:11:15 2015 -0500
+
+        Print skip_all plan using _print() to include indents
+
+        This means the SKIP wont affect the exit code of the test if multiple
+        SKIPs are found.
+
 0.31 2015-04-13T04:12:57Z
 
     commit 35ea62941bbc827cd6695088cacdf8ad5fef4dcd
